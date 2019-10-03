@@ -3123,7 +3123,8 @@ slide:not(.current) .plotly.html-widget{
 <slide class=""><hgroup><h2>Getting Started</h2></hgroup><article  id="getting-started">
 
 <ul>
-<li>The workshop slides and codes are available at the <a href='https://github.com/mdtuhinsheikh/R_Intro_UCSAS2019' title=''>link</a>.</li>
+<li>The source codes and necessary documentations are available at the repository: (<a href='https://github.com/mdtuhinsheikh/introR_ucsas2019' title=''>https://github.com/mdtuhinsheikh/introR_ucsas2019</a>).</li>
+<li>The workshop slides are available at the <a href='https://github.com/mdtuhinsheikh/R_Intro_UCSAS2019' title=''>link</a>.</li>
 <li>Prerequisites:
 
 <ul>
@@ -3178,7 +3179,6 @@ slide:not(.current) .plotly.html-widget{
 <li>Read and Write Data</li>
 <li>Data Management</li>
 <li>Brief overview of &ldquo;dplyr&rdquo; package</li>
-<li>Practice exercise</li>
 </ul>
 
 </article></slide><slide class=""><hgroup><h2>What is R?</h2></hgroup><article  id="what-is-r">
@@ -3504,22 +3504,16 @@ pow(2, 3)            # 8</pre>
 </ul>
 
 <pre class = 'prettyprint lang-r'>for(i in 1:5){
-  index = i
+  index &lt;- i
   print(index)
 }
-#[1] 1 2 3 4 5
 
 i=1
-while(i == 5){
-  index=i
+while(i &lt;= 5){
+  index &lt;- i
   print(index)
   i = i + 1
-}
-#[1] 1 2 3 4 5</pre>
-
-<ul>
-<li>We can write any type of operation in between the loop which needs to be repeated.</li>
-</ul>
+}</pre>
 
 </article></slide><slide class=""><hgroup><h2>Loop and condition cont…</h2></hgroup><article  id="loop-and-condition-cont">
 
@@ -3566,11 +3560,10 @@ while(i == 5){
 
 <pre class = 'prettyprint lang-r'>for(i in 1:5){
   if(i != 2){
-    index = i
+    index &lt;- i
     print(index)
   }
-}
-#[1] 1 3 4 5</pre>
+}</pre>
 
 <ul>
 <li>Loop and conditioning can always be significant component of a R function.</li>
@@ -3631,16 +3624,7 @@ library(Lahman)</pre>
 <li>Example:</li>
 </ul>
 
-<pre class = 'prettyprint lang-r'>data(package = &quot;Lahman&quot;)
-#AllstarFull                          AllstarFull table
-#Appearances                          Appearances table
-#AwardsManagers                       AwardsManagers table
-#AwardsPlayers                        AwardsPlayers table
-#AwardsShareManagers                  AwardsShareManagers table
-#AwardsSharePlayers                   AwardsSharePlayers table
-#Batting                              Batting table
-#BattingPost                          BattingPost table
-#...</pre>
+<pre class = 'prettyprint lang-r'>data(package = &quot;Lahman&quot;)</pre>
 
 </article></slide><slide class=""><hgroup><h2>Read and write data from/to local directory</h2></hgroup><article  id="read-and-write-data-fromto-local-directory">
 
@@ -3707,12 +3691,12 @@ library(Lahman)</pre>
 
 <pre class = 'prettyprint lang-r'>head(Batting)
 #   playerID yearID stint teamID lgID  G  AB  R  H X2B X3B HR RBI ...
-#1 abercda01   1871     1    TRO   NA  1   4  0  0   0   0  0   0 ...
-#2  addybo01   1871     1    RC1   NA 25 118 30 32   6   0  0  13 ...
-#3 allisar01   1871     1    CL1   NA 29 137 28 40   4   5  0  19 ...
-#4 allisdo01   1871     1    WS3   NA 27 133 28 44  10   2  2  27 ...
-#5 ansonca01   1871     1    RC1   NA 25 120 29 39  11   3  0  16 ...
-#6 armstbo01   1871     1    FW1   NA 12  49  9 11   2   1  0   5 ...</pre>
+# 1 abercda01   1871     1    TRO   NA  1   4  0  0   0   0  0   0 ...
+# 2  addybo01   1871     1    RC1   NA 25 118 30 32   6   0  0  13 ...
+# 3 allisar01   1871     1    CL1   NA 29 137 28 40   4   5  0  19 ...
+# 4 allisdo01   1871     1    WS3   NA 27 133 28 44  10   2  2  27 ...
+# 5 ansonca01   1871     1    RC1   NA 25 120 29 39  11   3  0  16 ...
+# 6 armstbo01   1871     1    FW1   NA 12  49  9 11   2   1  0   5 ...</pre>
 
 </article></slide><slide class=""><hgroup><h2>Basics of dataframe using Batting data</h2></hgroup><article  id="basics-of-dataframe-using-batting-data">
 
@@ -3721,14 +3705,14 @@ library(Lahman)</pre>
 </ul>
 
 <pre class = 'prettyprint lang-r'>Batting[, 1:4]
-#   playerID yearID stint teamID
-#1 abercda01   1871     1    TRO
-#2  addybo01   1871     1    RC1
-#3 allisar01   1871     1    CL1
-#4 allisdo01   1871     1    WS3
-#5 ansonca01   1871     1    RC1
-#6 armstbo01   1871     1    FW1
-#...</pre>
+#    playerID yearID stint teamID
+# 1 abercda01   1871     1    TRO
+# 2  addybo01   1871     1    RC1
+# 3 allisar01   1871     1    CL1
+# 4 allisdo01   1871     1    WS3
+# 5 ansonca01   1871     1    RC1
+# 6 armstbo01   1871     1    FW1
+# ...</pre>
 
 </article></slide><slide class=""><hgroup><h2>Basics of dataframe using Batting data cont…</h2></hgroup><article  id="basics-of-dataframe-using-batting-data-cont">
 
@@ -3748,15 +3732,15 @@ Batting[1:10, c(&quot;playerID&quot;, &quot;yearID&quot;)]
 <li>Create new variable</li>
 </ul>
 
-<pre class = 'prettyprint lang-r'>Batting$CS_SO &lt;- Batting$CS + Batting$SO
+<pre class = 'prettyprint lang-r'>Batting$CS_SO &lt;- with(Batting, CS + SO)
 head(Batting[, c(&quot;CS&quot;, &quot;SO&quot;, &quot;CS_SO&quot;)])
-#  CS SO CS_SO
-#1  0  0     0
-#2  1  0     1
-#3  1  5     6
-#4  1  2     3
-#5  2  1     3
-#6  1  1     2</pre>
+#   CS SO CS_SO
+# 1  0  0     0
+# 2  1  0     1
+# 3  1  5     6
+# 4  1  2     3
+# 5  2  1     3
+# 6  1  1     2</pre>
 
 </article></slide><slide class=""><hgroup><h2>Quiz on Batting data</h2></hgroup><article  id="quiz-on-batting-data">
 
@@ -3815,13 +3799,13 @@ library(dplyr)</pre>
 
 <pre class = 'prettyprint lang-r'>data(&quot;Salaries&quot;, package = &quot;Lahman&quot;)
 head(Salaries)
-#  yearID teamID lgID  playerID salary
-#1   1985    ATL   NL barkele01 870000
-#2   1985    ATL   NL bedrost01 550000
-#3   1985    ATL   NL benedbr01 545000
-#4   1985    ATL   NL  campri01 633333
-#5   1985    ATL   NL ceronri01 625000
-#6   1985    ATL   NL chambch01 800000</pre>
+#   yearID teamID lgID  playerID salary
+# 1   1985    ATL   NL barkele01 870000
+# 2   1985    ATL   NL bedrost01 550000
+# 3   1985    ATL   NL benedbr01 545000
+# 4   1985    ATL   NL  campri01 633333
+# 5   1985    ATL   NL ceronri01 625000
+# 6   1985    ATL   NL chambch01 800000</pre>
 
 </article></slide><slide class=""><hgroup><h2>Data management using &ldquo;dplyr&rdquo; package cont…</h2></hgroup><article  id="data-management-using-dplyr-package-cont">
 
@@ -3832,10 +3816,10 @@ head(Salaries)
 <pre class = 'prettyprint lang-r'>salaries &lt;- Salaries %&gt;%
              select(playerID, yearID, teamID, salary)
 head(salaries)
-#   playerID yearID teamID salary
-#1 barkele01   1985    ATL 870000
-#2 bedrost01   1985    ATL 550000
-#...</pre>
+#    playerID yearID teamID salary
+# 1 barkele01   1985    ATL 870000
+# 2 bedrost01   1985    ATL 550000
+# ...</pre>
 
 </article></slide><slide class=""><hgroup><h2>Data management using &ldquo;dplyr&rdquo; package cont…</h2></hgroup><article  id="data-management-using-dplyr-package-cont-1">
 

@@ -22,7 +22,8 @@ knitr::opts_chunk$set(echo = FALSE)
 
 
 ## Getting Started
-- The workshop slides and codes are available at the [link](https://github.com/mdtuhinsheikh/R_Intro_UCSAS2019).
+- The source codes and necessary documentations are available at the repository: (https://github.com/mdtuhinsheikh/introR_ucsas2019).
+- The workshop slides are available at the [link](https://github.com/mdtuhinsheikh/R_Intro_UCSAS2019).
 - Prerequisites: 
   + [R](https://cran.r-project.org/) and [Rstudio](https://www.rstudio.com/products/rstudio/download/#download) have been installed.
 
@@ -53,7 +54,6 @@ knitr::opts_chunk$set(echo = FALSE)
 - Read and Write Data
 - Data Management
 - Brief overview of "dplyr" package
-- Practice exercise
 
 ## What is R?
 - R is a free software environment for statistical computing and graphics
@@ -281,20 +281,18 @@ pow(2, 3)            # 8
 - If we want to repeat a task, we can use **for**, **while**, etc. statements.
 ```{r echo = TRUE, eval = FALSE}
 for(i in 1:5){
-  index = i
+  index <- i
   print(index)
 }
-#[1] 1 2 3 4 5
 
 i=1
-while(i == 5){
-  index=i
+while(i <= 5){
+  index <- i
   print(index)
   i = i + 1
 }
-#[1] 1 2 3 4 5
 ```
-- We can write any type of operation in between the loop which needs to be repeated.
+
 
 ## Loop and condition cont...
 - Useful arithmatic operators and R syntax
@@ -313,11 +311,10 @@ while(i == 5){
 ```{r echo = TRUE, eval = FALSE}
 for(i in 1:5){
   if(i != 2){
-    index = i
+    index <- i
     print(index)
   }
 }
-#[1] 1 3 4 5
 ```
 - Loop and conditioning can always be significant component of a R function.
 
@@ -361,15 +358,6 @@ data(package = "package_name")
 - Example:
 ```{r echo = TRUE, eval = FALSE}
 data(package = "Lahman")
-#AllstarFull                          AllstarFull table
-#Appearances                          Appearances table
-#AwardsManagers                       AwardsManagers table
-#AwardsPlayers                        AwardsPlayers table
-#AwardsShareManagers                  AwardsShareManagers table
-#AwardsSharePlayers                   AwardsSharePlayers table
-#Batting                              Batting table
-#BattingPost                          BattingPost table
-#...
 ```
 
 ## Read and write data from/to local directory
@@ -422,26 +410,26 @@ str("Batting")
 ```{r, echo = TRUE, eval = FALSE}
 head(Batting)
 #   playerID yearID stint teamID lgID  G  AB  R  H X2B X3B HR RBI ...
-#1 abercda01   1871     1    TRO   NA  1   4  0  0   0   0  0   0 ...
-#2  addybo01   1871     1    RC1   NA 25 118 30 32   6   0  0  13 ...
-#3 allisar01   1871     1    CL1   NA 29 137 28 40   4   5  0  19 ...
-#4 allisdo01   1871     1    WS3   NA 27 133 28 44  10   2  2  27 ...
-#5 ansonca01   1871     1    RC1   NA 25 120 29 39  11   3  0  16 ...
-#6 armstbo01   1871     1    FW1   NA 12  49  9 11   2   1  0   5 ...
+# 1 abercda01   1871     1    TRO   NA  1   4  0  0   0   0  0   0 ...
+# 2  addybo01   1871     1    RC1   NA 25 118 30 32   6   0  0  13 ...
+# 3 allisar01   1871     1    CL1   NA 29 137 28 40   4   5  0  19 ...
+# 4 allisdo01   1871     1    WS3   NA 27 133 28 44  10   2  2  27 ...
+# 5 ansonca01   1871     1    RC1   NA 25 120 29 39  11   3  0  16 ...
+# 6 armstbo01   1871     1    FW1   NA 12  49  9 11   2   1  0   5 ...
 ```
 
 ## Basics of dataframe using Batting data
 - Indexing works similar to matrix
 ```{r echo = TRUE, eval = FALSE}
 Batting[, 1:4]
-#   playerID yearID stint teamID
-#1 abercda01   1871     1    TRO
-#2  addybo01   1871     1    RC1
-#3 allisar01   1871     1    CL1
-#4 allisdo01   1871     1    WS3
-#5 ansonca01   1871     1    RC1
-#6 armstbo01   1871     1    FW1
-#...
+#    playerID yearID stint teamID
+# 1 abercda01   1871     1    TRO
+# 2  addybo01   1871     1    RC1
+# 3 allisar01   1871     1    CL1
+# 4 allisdo01   1871     1    WS3
+# 5 ansonca01   1871     1    RC1
+# 6 armstbo01   1871     1    FW1
+# ...
 ```
 
 ## Basics of dataframe using Batting data cont...
@@ -457,15 +445,15 @@ Batting[1:10, c("playerID", "yearID")]
 ## Basics of dataframe using Batting data cont...
 - Create new variable
 ```{r echo = TRUE, eval = FALSE}
-Batting$CS_SO <- Batting$CS + Batting$SO
+Batting$CS_SO <- with(Batting, CS + SO)
 head(Batting[, c("CS", "SO", "CS_SO")])
-#  CS SO CS_SO
-#1  0  0     0
-#2  1  0     1
-#3  1  5     6
-#4  1  2     3
-#5  2  1     3
-#6  1  1     2
+#   CS SO CS_SO
+# 1  0  0     0
+# 2  1  0     1
+# 3  1  5     6
+# 4  1  2     3
+# 5  2  1     3
+# 6  1  1     2
 ```
 ## Quiz on Batting data
 - Display data from 1871 only
@@ -508,13 +496,13 @@ library(dplyr)
 ```{r echo = TRUE, eval = FALSE}
 data("Salaries", package = "Lahman")
 head(Salaries)
-#  yearID teamID lgID  playerID salary
-#1   1985    ATL   NL barkele01 870000
-#2   1985    ATL   NL bedrost01 550000
-#3   1985    ATL   NL benedbr01 545000
-#4   1985    ATL   NL  campri01 633333
-#5   1985    ATL   NL ceronri01 625000
-#6   1985    ATL   NL chambch01 800000
+#   yearID teamID lgID  playerID salary
+# 1   1985    ATL   NL barkele01 870000
+# 2   1985    ATL   NL bedrost01 550000
+# 3   1985    ATL   NL benedbr01 545000
+# 4   1985    ATL   NL  campri01 633333
+# 5   1985    ATL   NL ceronri01 625000
+# 6   1985    ATL   NL chambch01 800000
 ```
 
 ## Data management using "dplyr" package cont...
@@ -523,10 +511,10 @@ head(Salaries)
 salaries <- Salaries %>%
              select(playerID, yearID, teamID, salary)
 head(salaries)
-#   playerID yearID teamID salary
-#1 barkele01   1985    ATL 870000
-#2 bedrost01   1985    ATL 550000
-#...
+#    playerID yearID teamID salary
+# 1 barkele01   1985    ATL 870000
+# 2 bedrost01   1985    ATL 550000
+# ...
 ```
 
 ## Data management using "dplyr" package cont...
