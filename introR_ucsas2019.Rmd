@@ -148,9 +148,9 @@ rep(c(1, 2, 3), each = 2)                  # 1 1 2 2 3 3
 ## Some useful R functions cont...
 - For ordering and subsetting:
 ```r
-sort(), order(), rank(), quantile()
-duplicated(), unique()
-table(), split(), cut()
+sort(), order(), rank(), quantile(),
+duplicated(), unique(),
+table(), split(), cut().
 ```
 
 ## Some useful functions cont...
@@ -221,23 +221,26 @@ x
 - Let us learn arithmatic operations of matrix by solving the following quiz
 - **Quiz:** Let $A = \begin{bmatrix} 1 & 2 \\ 3 & 4  \end{bmatrix}$ and $B = \begin{bmatrix} 10 & 20 \\ 30 & 40  \end{bmatrix}$. 
   + What are the dimensions of $A$ and $B$?
-  + Is $AB$ possible, print using R program using logical operator?
+  + Find the determinant of $A$ and $B$.
   + Evaluate $AB$, $A^{-1}$, and $B^{-1}$.
   
 ## Quiz solution
+- What are the dimensions of $A$ and $B$?
 ```{r echo = TRUE, eval = FALSE}
 A <- matrix(c(1, 2, 3, 4), ncol = 2, byrow = TRUE)
 B <- matrix(c(10, 20, 30, 40), ncol = 2, byrow = TRUE)
 
 dim(A)
 dim(B)
-
-if (dim(A)[2] == dim(B)[1]){
-  print("The multiplication possible")
-} else {
-  print("The multiplication is not possible")
-}
-
+```
+- Find the determinant of $A$ and $B$.
+```{r echo = TRUE, eval = FALSE}
+det(A)
+det(B)
+```
+## Quiz solution cont...
+- Evaluate $AB$, $A^{-1}$, and $B^{-1}$.
+```{r echo = TRUE, eval = FALSE}
 A %*% B
 solve(A)
 solve(B)
@@ -262,8 +265,10 @@ find_abs <- function(x) {
 find_abs(-5)       # 5
 ```
 
-## Function cont...
-- **Quiz:** Write a function that takes $x$ and $y$ as input and evaluates $x^y$.
+## Quiz
+- Write a function that takes $x$ and $y$ as input and evaluates $x^y$.
+
+## Quiz solution
 ```{r echo = TRUE, eval = FALSE}
 pow <- function(x, y) {
   result <- x^y
@@ -315,6 +320,22 @@ for(i in 1:5){
 #[1] 1 3 4 5
 ```
 - Loop and conditioning can always be significant component of a R function.
+
+## Quiz 
+- Is matrix multiplication $AB$ possible? Use the same $A = \begin{bmatrix} 1 & 2 \\ 3 & 4  \end{bmatrix}$ and $B = \begin{bmatrix} 10 & 20 \\ 30 & 40  \end{bmatrix}$. Write an R program using **if** condition. 
+```{r echo = TRUE, eval = FALSE}
+A <- matrix(c(1, 2, 3, 4), ncol = 2, byrow = TRUE)
+B <- matrix(c(10, 20, 30, 40), ncol = 2, byrow = TRUE)
+
+dim(A)
+dim(B)
+
+if (dim(A)[2] == dim(B)[1]){
+  print("The multiplication is possible")
+} else {
+  print("The multiplication is not possible")
+}
+```
 
 ## Installing and loading packages
 - Basic syntax: 
@@ -447,7 +468,7 @@ head(Batting[, c("CS", "SO", "CS_SO")])
 #6  1  1     2
 ```
 ## Quiz on Batting data
-- Displays data from 1871 only
+- Display data from 1871 only
 - Find the frequency of unique number of players, teams, and year information
 - Create a separate dataframe for year 1872 only.
 
@@ -466,7 +487,7 @@ length(unique(Batting$yearID))          # [1] 148
 ```
 
 ## Quiz solution cont...
-- Alternative way using **apply()** function
+- Alternative way: using **apply()** function
 ```{r echo = TRUE, eval = FALSE}
 apply(Batting, 2, function(x) {length(unique(x))})
 # playerID   yearID    stint   teamID ...
@@ -531,11 +552,33 @@ batting <- batting %>% arrange(playerID, yearID, stint)
 #5 aardsda01   2009     1    SEA   AL  ...  419000
 #6 aardsda01   2010     1    SEA   AL  ...  2750000
 ```
+## Quiz
+- Filter the data with eiligible players after the year 1899 and with a minimum of 20 base on balls.
+- Arrange the eligible players by decreasing order of base on balls.
 
+## Quiz solution
+- Filter the data with eiligible players after the year 1899 and with a minimum of 20 base on balls
+```{r echo = TRUE, eval = FALSE}
+eligibleHitters <- batting %>%
+                     filter(yearID >= 1900 & BB > 20)
+```
 
+## Quiz solution cont..
+- Arrange the eligible players by decreasing order of base on balls.
+```{r echo = TRUE, eval = FALSE}
+goodPlayers <- eligibleHitters %>%
+                     arrange(desc(BB))
+```
 
+## Useful References
+- [R Programming for Data Science](https://bookdown.org/rdpeng/rprogdatascience/) by Roger D. Peng.
+- [An Introduction to R](https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf) by W. N. Venables, D. M. Smith
+and the R Core Team.
+- [Advanced R](http://adv-r.had.co.nz/) by Hadley Wickham.
 
-
+## Thanks
+- Good luck with coding R.
+- Feel free to contact for further queries: mdtuhin.sheikh@uconn.edu.
 
 
 

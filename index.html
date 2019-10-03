@@ -3306,9 +3306,9 @@ rep(c(1, 2, 3), each = 2)                  # 1 1 2 2 3 3</pre>
 <li>For ordering and subsetting:</li>
 </ul>
 
-<pre class = 'prettyprint lang-r'>sort(), order(), rank(), quantile()
-duplicated(), unique()
-table(), split(), cut()</pre>
+<pre class = 'prettyprint lang-r'>sort(), order(), rank(), quantile(),
+duplicated(), unique(),
+table(), split(), cut().</pre>
 
 </article></slide><slide class=""><hgroup><h2>Some useful functions cont…</h2></hgroup><article  id="some-useful-functions-cont">
 
@@ -3427,26 +3427,37 @@ x</pre>
 
 <ul>
 <li>What are the dimensions of \(A\) and \(B\)?</li>
-<li>Is \(AB\) possible, print using R program using logical operator?</li>
+<li>Find the determinant of \(A\) and \(B\).</li>
 <li>Evaluate \(AB\), \(A^{-1}\), and \(B^{-1}\).</li>
 </ul></li>
 </ul>
 
 </article></slide><slide class=""><hgroup><h2>Quiz solution</h2></hgroup><article  id="quiz-solution-1">
 
+<ul>
+<li>What are the dimensions of \(A\) and \(B\)?</li>
+</ul>
+
 <pre class = 'prettyprint lang-r'>A &lt;- matrix(c(1, 2, 3, 4), ncol = 2, byrow = TRUE)
 B &lt;- matrix(c(10, 20, 30, 40), ncol = 2, byrow = TRUE)
 
 dim(A)
-dim(B)
+dim(B)</pre>
 
-if (dim(A)[2] == dim(B)[1]){
-  print(&quot;The multiplication possible&quot;)
-} else {
-  print(&quot;The multiplication is not possible&quot;)
-}
+<ul>
+<li>Find the determinant of \(A\) and \(B\).</li>
+</ul>
 
-A %*% B
+<pre class = 'prettyprint lang-r'>det(A)
+det(B)</pre>
+
+</article></slide><slide class=""><hgroup><h2>Quiz solution cont…</h2></hgroup><article  id="quiz-solution-cont">
+
+<ul>
+<li>Evaluate \(AB\), \(A^{-1}\), and \(B^{-1}\).</li>
+</ul>
+
+<pre class = 'prettyprint lang-r'>A %*% B
 solve(A)
 solve(B)</pre>
 
@@ -3472,11 +3483,13 @@ solve(B)</pre>
 }
 find_abs(-5)       # 5</pre>
 
-</article></slide><slide class=""><hgroup><h2>Function cont…</h2></hgroup><article  id="function-cont">
+</article></slide><slide class=""><hgroup><h2>Quiz</h2></hgroup><article  id="quiz">
 
 <ul>
-<li><strong>Quiz:</strong> Write a function that takes \(x\) and \(y\) as input and evaluates \(x^y\).</li>
+<li>Write a function that takes \(x\) and \(y\) as input and evaluates \(x^y\).</li>
 </ul>
+
+</article></slide><slide class=""><hgroup><h2>Quiz solution</h2></hgroup><article  id="quiz-solution-2">
 
 <pre class = 'prettyprint lang-r'>pow &lt;- function(x, y) {
   result &lt;- x^y
@@ -3562,6 +3575,24 @@ while(i == 5){
 <ul>
 <li>Loop and conditioning can always be significant component of a R function.</li>
 </ul>
+
+</article></slide><slide class=""><hgroup><h2>Quiz</h2></hgroup><article  id="quiz-1">
+
+<ul>
+<li>Is matrix multiplication \(AB\) possible? Use the same \(A = \begin{bmatrix} 1 &amp; 2 \\ 3 &amp; 4 \end{bmatrix}\) and \(B = \begin{bmatrix} 10 &amp; 20 \\ 30 &amp; 40 \end{bmatrix}\). Write an R program using <strong>if</strong> condition.</li>
+</ul>
+
+<pre class = 'prettyprint lang-r'>A &lt;- matrix(c(1, 2, 3, 4), ncol = 2, byrow = TRUE)
+B &lt;- matrix(c(10, 20, 30, 40), ncol = 2, byrow = TRUE)
+
+dim(A)
+dim(B)
+
+if (dim(A)[2] == dim(B)[1]){
+  print(&quot;The multiplication is possible&quot;)
+} else {
+  print(&quot;The multiplication is not possible&quot;)
+}</pre>
 
 </article></slide><slide class=""><hgroup><h2>Installing and loading packages</h2></hgroup><article  id="installing-and-loading-packages">
 
@@ -3730,12 +3761,12 @@ head(Batting[, c(&quot;CS&quot;, &quot;SO&quot;, &quot;CS_SO&quot;)])
 </article></slide><slide class=""><hgroup><h2>Quiz on Batting data</h2></hgroup><article  id="quiz-on-batting-data">
 
 <ul>
-<li>Displays data from 1871 only</li>
+<li>Display data from 1871 only</li>
 <li>Find the frequency of unique number of players, teams, and year information</li>
 <li>Create a separate dataframe for year 1872 only.</li>
 </ul>
 
-</article></slide><slide class=""><hgroup><h2>Quiz solution</h2></hgroup><article  id="quiz-solution-2">
+</article></slide><slide class=""><hgroup><h2>Quiz solution</h2></hgroup><article  id="quiz-solution-3">
 
 <ul>
 <li>Conditioning on the dataframe</li>
@@ -3753,10 +3784,10 @@ Batting[Batting$yearID == &quot;1871&quot; &amp; Batting$playerID == &quot;aards
 length(unique(Batting$teamID))          # [1] 149
 length(unique(Batting$yearID))          # [1] 148</pre>
 
-</article></slide><slide class=""><hgroup><h2>Quiz solution cont…</h2></hgroup><article  id="quiz-solution-cont">
+</article></slide><slide class=""><hgroup><h2>Quiz solution cont…</h2></hgroup><article  id="quiz-solution-cont-1">
 
 <ul>
-<li>Alternative way using <strong>apply()</strong> function</li>
+<li>Alternative way: using <strong>apply()</strong> function</li>
 </ul>
 
 <pre class = 'prettyprint lang-r'>apply(Batting, 2, function(x) {length(unique(x))})
@@ -3834,7 +3865,47 @@ head(salaries)
 #3 aardsda01   2007     1    CHA   AL  ...  387500
 #4 aardsda01   2008     1    BOS   AL  ...  403250
 #5 aardsda01   2009     1    SEA   AL  ...  419000
-#6 aardsda01   2010     1    SEA   AL  ...  2750000</pre></article></slide>
+#6 aardsda01   2010     1    SEA   AL  ...  2750000</pre>
+
+</article></slide><slide class=""><hgroup><h2>Quiz</h2></hgroup><article  id="quiz-2">
+
+<ul>
+<li>Filter the data with eiligible players after the year 1899 and with a minimum of 20 base on balls.</li>
+<li>Arrange the eligible players by decreasing order of base on balls.</li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>Quiz solution</h2></hgroup><article  id="quiz-solution-4">
+
+<ul>
+<li>Filter the data with eiligible players after the year 1899 and with a minimum of 20 base on balls</li>
+</ul>
+
+<pre class = 'prettyprint lang-r'>eligibleHitters &lt;- batting %&gt;%
+                     filter(yearID &gt;= 1900 &amp; BB &gt; 20)</pre>
+
+</article></slide><slide class=""><hgroup><h2>Quiz solution cont..</h2></hgroup><article  id="quiz-solution-cont..">
+
+<ul>
+<li>Arrange the eligible players by decreasing order of base on balls.</li>
+</ul>
+
+<pre class = 'prettyprint lang-r'>goodPlayers &lt;- eligibleHitters %&gt;%
+                     arrange(desc(BB))</pre>
+
+</article></slide><slide class=""><hgroup><h2>Useful References</h2></hgroup><article  id="useful-references">
+
+<ul>
+<li><a href='https://bookdown.org/rdpeng/rprogdatascience/' title=''>R Programming for Data Science</a> by Roger D. Peng.</li>
+<li><a href='https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf' title=''>An Introduction to R</a> by W. N. Venables, D. M. Smith and the R Core Team.</li>
+<li><a href='http://adv-r.had.co.nz/' title=''>Advanced R</a> by Hadley Wickham.</li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>Thanks</h2></hgroup><article  id="thanks">
+
+<ul>
+<li>Good luck with coding R.</li>
+<li>Feel free to contact for further queries: <a href='mailto:mdtuhin.sheikh@uconn.edu' title=''>mdtuhin.sheikh@uconn.edu</a>.</li>
+</ul></article></slide>
 
 
   <slide class="backdrop"></slide>
